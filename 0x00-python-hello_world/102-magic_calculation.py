@@ -1,3 +1,3 @@
 def magic_calculation(a, b):
-    return pow(a, b)
+    return (98 + pow(a, b))
 
