@@ -1,3 +1,4 @@
 #!/usr/bin/python3
 for alpha in range(97, 123):
-    print(chr(alpha), end='')
+    char = chr(alpha)
+    print(f"{char}", end='')
