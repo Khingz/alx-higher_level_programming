@@ -1,9 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 def multiple_returns(sentence):
     length = len(sentence)
-    first_lett = None if sentence == "" else sentence[0]
-    return (length, first_lett)
+    return (length, None) if sentence == "" else (length, sentence[0])
 
 
 if __name__ == "__main__":
