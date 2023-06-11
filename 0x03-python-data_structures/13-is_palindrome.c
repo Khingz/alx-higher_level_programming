@@ -9,31 +9,29 @@ listint_t *copy_listint(listint_t **head);
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t **copy;
-	listint_t *copy_tmp, *tmp;
+	listint_t **copy, *tmp, *tmp_copy;
 
 	if (head == NULL)
 		return (1);
-	copy_tmp = tmp = NULL;
-	copy = malloc(sizeof(listint_t *));
+	tmp = *head;
+	copy = malloc(sizeof(listint_t));
 	if (copy == NULL)
 	{
 		return (0);
 	}
 	*copy = copy_listint(head);
 	*copy = reverse_listint(copy);
-	tmp = *head;
-	copy_tmp = *copy;
+	tmp_copy = *copy;
 	while (tmp)
 	{
-		if (tmp->n != copy_tmp->n)
+		if (tmp->n != tmp_copy->n)
 		{
 			free_listint(*copy);
 			free(copy);
 			return (0);
 		}
 		tmp = tmp->next;
-		copy_tmp = copy_tmp->next;
+		tmp_copy = tmp_copy->next;
 	}
 	free_listint(*copy);
 	free(copy);
