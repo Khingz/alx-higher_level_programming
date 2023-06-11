@@ -11,7 +11,7 @@ int is_palindrome(listint_t **head)
 {
 	listint_t **rev, **copy;
 	listint_t *copy_tmp, *tmp;
-	
+
 	if (head == NULL)
 		return (0);
 	if (*head == NULL)
@@ -28,7 +28,7 @@ int is_palindrome(listint_t **head)
 	*rev = reverse_listint(copy);
 	tmp = *head;
 	copy_tmp = *rev;
-	while(tmp)
+	while (tmp)
 	{
 		if (tmp->n != copy_tmp->n)
 		{
