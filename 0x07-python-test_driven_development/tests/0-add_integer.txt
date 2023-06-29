@@ -1,0 +1,62 @@
+#0-add_integer.txt
+
+A module defines a function ``add_integer(a, b=98) that adds 2 integers using the `+` operator
+===============================================================================================
+
+Usage:
+======
+First import module
+
+	>>> add_integer = __import__('0-add_integer').add_integer
+	>>> add_integer(2, 3)
+	5
+
+Perfor operation with misture of integer and floats
+
+	>>> add_integer(2.3, 1)
+	3
+
+With negative numbers
+	>>> add_integer(-1, 98)
+	97
+
+With single numbers, positive aand negative
+	>>> add_integer(4)
+	102
+	>>> add_integer(-4)
+	94
+
+With a strings
+	>>> add_integer("hello")
+	Traceback (most recent call last):
+	TypeError: a must be an integer
+
+	>>> add_integer(6, "hello")
+	Traceback (most recent call last):
+	TypeError: b must be an integer
+
+with infinity number
+	>>> add_integer(float('inf'))
+	Traceback (most recent call last):
+	OverflowError: cannot convert float infinity to integer
+
+	>>> add_integer(-3, float('inf'))
+        Traceback (most recent call last):
+        OverflowError: cannot convert float infinity to integer
+
+	>>> add_integer(float('inf'), 13)
+        Traceback (most recent call last):
+        OverflowError: cannot convert float infinity to integer
+
+with nan
+	>>> add_integer(float('nan'))
+	Traceback (most recent call last):
+        ValueError: cannot convert float NaN to integer
+
+	>>> add_integer(12, float('nan'))
+        Traceback (most recent call last):
+        ValueError: cannot convert float NaN to integer
+
+	>>> add_integer(float('nan'), 76)
+        Traceback (most recent call last):
+    	ValueError: cannot convert float NaN to integer
