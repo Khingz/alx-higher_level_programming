@@ -1,0 +1,58 @@
+#4-print_square.txt
+
+Prints a square matrix of a given size
+======================================
+
+Usage:
+======
+
+Import module
+
+	>>> print_square = __import__('4-print_square').print_square
+
+Pass int as argument
+
+	>>> print_square(4)
+	####
+	####
+	####
+	####
+
+Pass zero as argument
+
+	>>> print_square(0)
+	
+Pass in a negative int or float
+
+	>>> print_square(-4)
+        Traceback (most recent call last):
+        ValueError: size must be >= 0
+
+	>>> print_square(-4.2)
+        Traceback (most recent call last):
+        TypeError: size must be an integer
+
+Pass a non-int argument
+
+	>>> print_square(2.0)
+	Traceback (most recent call last):
+	TypeError: size must be an integer
+
+	>>> print_square("int")
+        Traceback (most recent call last):
+        TypeError: size must be an integer
+
+	>>> print_square([2, 3, 4])
+        Traceback (most recent call last):
+        TypeError: size must be an integer
+
+	>>> print_square(None)
+        Traceback (most recent call last):
+        TypeError: size must be an integer
+
+Function called without arguments
+
+	>>> print_square()
+	Traceback (most recent call last):
+        TypeError: print_square() missing 1 required positional argument: 'size'
+	
