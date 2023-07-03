@@ -3,6 +3,14 @@
 
 
 def say_my_name(first_name, last_name=""):
+    """
+    say firstname and lastname
+
+    Args:
+        first_name: user first name
+        last_name: user lastname
+
+    """
     if not isinstance(first_name, str):
         raise TypeError("first_name must be a string")
 
