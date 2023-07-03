@@ -5,6 +5,7 @@
 class Rectangle:
     """Represents a class"""
     number_of_instances = 0
+    print_symbol = "#"
 
     def __init__(self, width=0, height=0):
         """
@@ -64,7 +65,7 @@ class Rectangle:
         if self.__height == 0 or self.__width == 0:
             return ""
         for i in range(self.__height):
-            mat += ("#" * self.__width)
+            mat += (str(self.print_symbol) * self.__width)
             mat += '\n' if i != (self.__height - 1) else ""
         return mat
 
