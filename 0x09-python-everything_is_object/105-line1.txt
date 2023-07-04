@@ -1,0 +1,2 @@
+262
+why because cpython allows caching of small integers from -5 to 256, this way initializatialization of integers within this range does not create a new pbject instead it points to the this cached integer. Does 262 ints are created before execution of line 2. 
