@@ -1,4 +1,4 @@
-#!/bun/usr/python3
+#!/bin/usr/python3
 """A module that multiply a 2D array with a given input"""
 
 
