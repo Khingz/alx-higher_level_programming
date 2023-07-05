@@ -23,37 +23,37 @@ def matrix_mul(m_a, m_b):
         raise TypeError("m_b must be a list of lists")
 
     if m_a == [] or m_a == [[]]:
-        raise TypeError("m_a can't be empty")
+        raise ValueError("m_a can't be empty")
     if m_b == [] or m_b == [[]]:
-        raise TypeError("m_b can't be empty")
+        raise ValueError("m_b can't be empty")
 
     for li in m_a:
         if not all(isinstance(el, (int, float)) for el in li):
-            raise ValueError("m_a should contain only integers or floats")
+            raise TypeError("m_a should contain only integers or floats")
 
     for li in m_b:
         if not all(isinstance(el, (int, float)) for el in li):
-            raise ValueError("m_b should contain only integers or floats")
+            raise TypeError("m_b should contain only integers or floats")
 
     for el in m_a:
-        length = len(m_a)
+        length = len(m_a[0])
         if len(el) != length:
             raise TypeError("each row of m_a must be of the same size")
 
     for el in m_b:
-        length = len(m_b)
+        length = len(m_b[0])
         if len(el) != length:
             raise TypeError("each row of m_b must be of the same size")
 
     mul_list = []
-    row_ma = len(m[0])
+    row_ma = len(m_a[0])
     column_mb = 0
     for i in m_b:
         column_mb += 1
     if row_ma != column_mb:
         raise ValueError("m_a and m_b can't be multiplied")
 
-    trans_matrix = list(zip(*ma_b))
+    trans_matrix = list(zip(*m_b))
     dot_matrix = []
     for r in m_a:
         row = []
