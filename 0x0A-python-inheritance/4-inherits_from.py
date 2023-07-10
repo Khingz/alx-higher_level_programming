@@ -6,7 +6,7 @@ def inherits_from(obj, a_class):
     """Checks an object if is subclass
 
     Args:
-    obj: object
+    obj: objec
     a_class: class
     Return: True or false
     """
