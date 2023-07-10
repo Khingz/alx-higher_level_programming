@@ -20,7 +20,7 @@ class Rectangle(BaseGeometry):
     """Class rectangle, child class og baseGeometry"""
     def __init__(self, width, height):
         """init function"""
-        self.integer_validator("", width)
+        self.integer_validator("width", width)
         self.__width = width
-        self.integer_validator("", height)
+        self.integer_validator("height", height)
         self.__height = height
