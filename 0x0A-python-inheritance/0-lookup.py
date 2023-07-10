@@ -5,7 +5,6 @@
 def lookup(obj):
     """
     Returns the list obj containing methods and attribute of class
-    
     Args:
         obj: object to print method and attributes
     """
