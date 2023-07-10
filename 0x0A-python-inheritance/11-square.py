@@ -1,0 +1,18 @@
+#!/usr/bin/python3
+"""Circle class"""
+Rectangle = __import__('9-rectangle').Rectangle
+
+
+class Square(Rectangle):
+    """Defines a class square"""
+    def __init__(self, size):
+        """init function"""
+        self.integer_validator("size", size)
+        self.__size = size
+
+    def area(self):
+        """defines the area"""
+        return self.__size * self.__size
+
+    def __str__(self):
+        return "[Square] {}/{}".format(self.__size, self.__size)
