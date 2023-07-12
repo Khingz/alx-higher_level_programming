@@ -4,6 +4,8 @@
 
 def pascal_triangle(n):
     """A function that returns a pascal tringle"""
+    if n < 1:
+        return []
     triangle = [[1]]
     for i in range(1, n):
         zero_triangle = [0] + triangle[i - 1] + [0]
