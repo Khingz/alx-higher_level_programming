@@ -108,3 +108,14 @@ class Rectangle(Base):
             for elem in kargs.keys():
                 if hasattr(self, elem):
                     setattr(self, elem, kargs[elem])
+
+    def to_dictionary(self):
+        """returns dict rep"""
+        """return self.__dict__"""
+        return {
+                "x": self.x,
+                "y": self.y,
+                "id": self.id,
+                "height": self.height,
+                "width": self.width
+        }
