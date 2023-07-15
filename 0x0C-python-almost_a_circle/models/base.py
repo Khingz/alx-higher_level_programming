@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """File containing module base class"""
 import json
+import csv
 
 
 class Base:
@@ -71,3 +72,28 @@ class Base:
                 return []
             except OSError:
                 return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """write to a csv file"""
+        filename = f"{cls.__name__}.csv"
+        with open(filename, 'w', newline="") as f:
+            if list_objs is None or list_objs == []:
+                f.write("[]")
+            else:
+                if cls.__name__ == "Rectangle":
+                    fields = ["id", "width", "height", "x", "y"]
+                else:
+                    fields = ["id", "size", "x", "y"]
+                writer = csv.DictWriter(
+                        f,
+                        fieldnames=fields
+                        )
+                writer.writeheader()
+                for elem in list_objs:
+                    writer.writerow(elem.to_dictionary())
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """read from a csv file"""
+        pass
