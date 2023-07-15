@@ -2,6 +2,7 @@
 """File containing module base class"""
 import json
 import csv
+import turtle
 
 
 class Base:
@@ -96,4 +97,27 @@ class Base:
     @classmethod
     def load_from_file_csv(cls):
         """read from a csv file"""
-        pass
+        filename = f"{cls.__name__}.csv"
+        with open(filename, 'r') as f:
+            try:
+                new_list = []
+                csv_reader = csv.DictReader(f)
+                """Skips the first row"""
+                list_to_int = []
+                for row in csv_reader:
+                    new_row = {k: int(val) for k, val in row.items()}
+                    list_to_int.append(new_row)
+                for obj in list_to_int:
+                    new_list.append(cls.create(**obj))
+                return new_list
+            except FileNotFoundError:
+                return []
+            except OSError:
+                return []
+
+    def draw(list_rectangles, list_squares):
+        """drwas using turtle model"""
+        draw = turtle.Turtle()
+        draw.forward(10)
+        draw.left(90)
+        draw.forward(100)
