@@ -20,7 +20,7 @@ class Base:
     @staticmethod
     def to_json_string(list_dictionaries):
         """convert dict to a json strin"""
-        if list_dictionaries is None or list_dictionaries == []:
+        if list_dictionaries is None:
             return "[]"
         return json.dumps(list_dictionaries)
 
@@ -62,17 +62,17 @@ class Base:
     def load_from_file(cls):
         """returns a list of instances from json file"""
         filename = f"{cls.__name__}.json"
-        with open(filename, 'r') as f:
-            try:
+        try:
+            with open(filename, 'r') as f:
                 list_file = []
                 read_f = Base.from_json_string(f.read())
                 for obj in read_f:
                     list_file.append(cls.create(**obj))
                 return list_file
-            except FileNotFoundError:
-                return []
-            except OSError:
-                return []
+        except FileNotFoundError:
+            return []
+        except OSError:
+            return []
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
@@ -98,8 +98,8 @@ class Base:
     def load_from_file_csv(cls):
         """read from a csv file"""
         filename = f"{cls.__name__}.csv"
-        with open(filename, 'r') as f:
-            try:
+        try:
+            with open(filename, 'r') as f:
                 new_list = []
                 csv_reader = csv.DictReader(f)
                 """Skips the first row"""
@@ -110,10 +110,10 @@ class Base:
                 for obj in list_to_int:
                     new_list.append(cls.create(**obj))
                 return new_list
-            except FileNotFoundError:
-                return []
-            except OSError:
-                return []
+        except FileNotFoundError:
+            return []
+        except OSError:
+            return []
 
     def draw(list_rectangles, list_squares):
         """drwas using turtle model"""
