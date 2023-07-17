@@ -115,6 +115,7 @@ class Base:
         except OSError:
             return []
 
+    @staticmethod
     def draw(list_rectangles, list_squares):
         """drwas using turtle model"""
         draw = turtle.Turtle()

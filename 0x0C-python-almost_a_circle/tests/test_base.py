@@ -301,10 +301,10 @@ class TestBase_save_to_file_csv(unittest.TestCase):
             self.assertTrue("10,2,5,4,6", fd.read())
 
         rect2 = Rectangle(2, 7, 3, 6, 4)
-        Rectangle.save_to_file_csv([rect1, rect2])
+        Rectangle.save_to_file_csv([rect, rect2])
         result = "10,2,5,4,6\n2,7,3,6,4"
         with open("Rectangle.csv", "r") as fd:
-            self.assertTrue(reult, fd.read())
+            self.assertTrue(result, fd.read())
 
     def test_save_to_file_csv_one_square(self):
         sq = Square(3, 9, 2, 4)
@@ -324,7 +324,7 @@ class TestBase_save_to_file_csv(unittest.TestCase):
         with open("Base.csv", "r") as f:
             self.assertTrue("3,9,2,4", f.read())
 
-    def test_save_to_file__csv_None(self):
+    def test_save_to_file_csv_None(self):
         Square.save_to_file_csv(None)
         with open("Square.csv", "r") as f:
             self.assertEqual("[]", f.read())
@@ -334,14 +334,13 @@ class TestBase_save_to_file_csv(unittest.TestCase):
         with open("Square.csv", "r") as f:
             self.assertEqual("[]", f.read())
 
-    def test_save_to_file_csv_no_args(self):
+    def test_save_to_file_csv_without_args(self):
         with self.assertRaises(TypeError):
             Rectangle.save_to_file_csv()
 
     def test_save_to_file_csv_more_than_one_arg(self):
         with self.assertRaises(TypeError):
-            Square.save_to_file_csv([], 1)
-
+            Square.save_to_file_csv([], [])
 
 class TestBase_load_from_file_csv(unittest.TestCase):
     """Unittests for testing load_from_file_csv method of Base class."""
@@ -407,6 +406,67 @@ class TestBase_load_from_file_csv(unittest.TestCase):
     def test_load_from_file_csv_more_than_one_arg(self):
         with self.assertRaises(TypeError):
             Base.load_from_file_csv([], 1)
+
+
+
+class TestBase_load_from_file_csv(unittest.TestCase):
+    """
+    Test for laod from
+    """
+    @classmethod
+    def tearDown(self):
+        try:
+            os.remove("Base.csv")
+        except OSError:
+            pass
+        try:
+            os.remove("Rectangle.csv")
+        except OSError:
+            pass
+        try:
+            os.remove("Square.csv")
+        except OSError:
+            pass
+
+
+    def test_load_from_file_csv_no_file(self):
+        output = Rectangle.load_from_file_csv()
+        self.assertEqual([], output)
+
+    def test_load_from_file_csv_rectangle(self):
+        rect = Rectangle(10, 2, 5, 4, 6)
+        rect2 = Rectangle(2, 7, 3, 6, 4)
+        Rectangle.save_to_file_csv([rect, rect2])
+        list_rectangles_output = Rectangle.load_from_file_csv()
+        self.assertEqual(str(rect), str(list_rectangles_output[0]))
+
+        self.assertEqual(str(rect2), str(list_rectangles_output[1]))
+
+    def test_load_from_file_csv_rectangle_types(self):
+        rect = Rectangle(10, 2, 5, 4, 6)
+        rect2 = Rectangle(2, 7, 3, 6, 4)
+        Rectangle.save_to_file_csv([rect, rect2])
+        l_out = Rectangle.load_from_file_csv()
+        self.assertTrue(all(type(obj) == Rectangle for obj in l_out))
+
+    def test_load_from_file_csv_square(self):
+        sq = Square(3, 9, 2, 4)
+        sq2 = Square(2, 1, 5, 3)
+        Square.save_to_file_csv([sq, sq2])
+        list_squares_output = Square.load_from_file_csv()
+        self.assertEqual(str(sq), str(list_squares_output[0]))
+        self.assertEqual(str(sq2), str(list_squares_output[1]))
+
+    def test_load_from_file_csv_square_types(self):
+        sq = Square(3, 9, 2, 4)
+        sq2 = Square(2, 1, 5, 3)
+        Square.save_to_file_csv([sq, sq2])
+        l_out = Square.load_from_file_csv()
+        self.assertTrue(all(type(obj) == Square for obj in l_out))
+
+    def test_load_from_file_csv_more_than_one_arg(self):
+        with self.assertRaises(TypeError):
+            Base.load_from_file_csv([], [])
 
 
 
