@@ -16,10 +16,7 @@ class Square(Rectangle):
 
     @size.setter
     def size(self, value):
-        if type(value) != int:
-            raise TypeError("width must be an integer")
-        if value <= 0:
-            raise TypeError("width must be > 0")
+        """setter for soze attribute"""
         self.width = value
         self.height = value
 
@@ -32,21 +29,37 @@ class Square(Rectangle):
                 self.width
                 )
 
-    def update(self, *args, **kargs):
+    def update(self, *args, **kwargs):
         """update the values of the class"""
-        if args:
-            if len(args) >= 1:
-                self.id = args[0]
-            if len(args) >= 2:
-                self.size = args[1]
-            if len(args) >= 3:
-                self.x = args[2]
-            if len(args) >= 4:
-                self.y = args[3]
-        else:
-            for elem in kargs.keys():
-                if hasattr(self, elem):
-                    setattr(self, elem, kargs[elem])
+        if args and len(args) != 0:
+            arg_count = 0
+            for arg in args:
+                if arg_count == 0:
+                    if arg is None:
+                        self.__init__(self.size, self.x, self.y)
+                    else:
+                        self.id = arg
+                elif arg_count == 1:
+                    self.size = arg
+                elif arg_count == 2:
+                    self.x = arg
+                elif arg_count == 3:
+                    self.y = arg
+                arg_count += 1
+
+        elif kwargs and len(kwargs) != 0:
+            for key, val in kwargs.items():
+                if key == "id":
+                    if val is None:
+                        self.__init__(self.size, self.x, self.y)
+                    else:
+                        self.id = val
+                elif key == "size":
+                    self.size = val
+                elif key == "x":
+                    self.x = val
+                elif key == "y":
+                    self.y = val
 
     def to_dictionary(self):
         """returns dict rep"""

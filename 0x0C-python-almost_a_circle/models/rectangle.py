@@ -91,23 +91,41 @@ class Rectangle(Base):
                 self.__height
                 )
 
-    def update(self, *args, **kargs):
+    def update(self, *args, **kwargs):
         """update the values of the class"""
-        if args:
-            if len(args) >= 1:
-                self.id = args[0]
-            if len(args) >= 2:
-                self.__width = args[1]
-            if len(args) >= 3:
-                self.__height = args[2]
-            if len(args) >= 4:
-                self.__x = args[3]
-            if len(args) >= 5:
-                self.__y = args[4]
-        else:
-            for elem in kargs.keys():
-                if hasattr(self, elem):
-                    setattr(self, elem, kargs[elem])
+        if args and len(args) != 0:
+            arg_count = 0
+            for arg in args:
+                if arg_count == 0:
+                    if arg is None:
+                        self.__init__(self.width, self.height, self.x, self.y)
+                    else:
+                        self.id = arg
+                elif arg_count == 1:
+                    self.width = arg
+                elif arg_count == 2:
+                    self.height = arg
+                elif arg_count == 3:
+                    self.x = arg
+                elif arg_count == 4:
+                    self.y = arg
+                arg_count += 1
+
+        elif kwargs and len(kwargs) != 0:
+            for key, val in kwargs.items():
+                if key == "id":
+                    if val is None:
+                        self.__init__(self.width, self.height, self.x, self.y)
+                    else:
+                        self.id = val
+                elif key == "width":
+                    self.width = val
+                elif key == "height":
+                    self.height = val
+                elif key == "x":
+                    self.x = val
+                elif key == "y":
+                    self.y = val
 
     def to_dictionary(self):
         """returns dict rep"""

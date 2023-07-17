@@ -25,16 +25,19 @@ class TestBase_Class_Instance(unittest.TestCase):
 
     def test_more_than_one_arg(self):
         with self.assertRaises(TypeError):
-           Base(2, 3, 5)
+            Base(2, 3, 5)
 
         with self.assertRaises(TypeError):
-           Base(2, 3)
+            Base(2, 3)
 
     def test_non_int_arg(self):
         self.assertEqual("python", Base("python").id)
         self.assertEqual(5.5, Base(5.5).id)
         self.assertEqual(complex(10), Base(complex(10)).id)
-        self.assertEqual({"key": 12, "value": 34}, Base({"key": 12, "value": 34}).id)
+        self.assertEqual(
+                {"key": 12, "value": 34},
+                Base({"key": 12, "value": 34}).id
+                )
         self.assertEqual(False, Base(False).id)
         self.assertEqual([1, 2, 3], Base([1, 2, 3]).id)
         self.assertEqual((1, 2), Base((1, 2)).id)
@@ -69,12 +72,14 @@ class TestBaseMethod_to_json_string(unittest.TestCase):
         rect = [rect.to_dictionary()]
         sq = [sq.to_dictionary()]
         self.assertEqual(str, type(Base.to_json_string(rect)))
+
         self.assertEqual(str, type(Base.to_json_string(sq)))
 
     def test_to_json_string_rectangle_dict(self):
         rect1 = Rectangle(10, 7, 2, 8, 5)
         rect2 = Rectangle(1, 7, 2, 8)
-        self.assertTrue(len(Base.to_json_string([rect1.to_dictionary()])) == 53)
+        result = len(Base.to_json_string([rect1.to_dictionary()]))
+        self.assertTrue(result == 53)
         rect_list = [rect1.to_dictionary(), rect2.to_dictionary()]
         self.assertTrue(len(Base.to_json_string(rect_list)) == 106)
 
@@ -107,9 +112,9 @@ class TestBaseMethod_from_json_string(unittest.TestCase):
     def test_from_json_string_rectangle(self):
         list_input = [{"id": 89, "width": 10, "height": 4}]
         list_input2 = [
-            {"id": 89, "width": 10, "height": 4, "x": 7, "y": 8},
-            {"id": 98, "width": 5, "height": 2, "x": 1, "y": 3},
-        ]
+                {"id": 89, "width": 10, "height": 4, "x": 7, "y": 8},
+                {"id": 98, "width": 5, "height": 2, "x": 1, "y": 3}
+                ]
         json_list_input = Rectangle.to_json_string(list_input)
         list_output = Rectangle.from_json_string(json_list_input)
         self.assertEqual(list_input, list_output)
@@ -121,9 +126,9 @@ class TestBaseMethod_from_json_string(unittest.TestCase):
     def test_from_json_string_squares(self):
         list_input = [{"id": 89, "size": 10, "height": 4}]
         list_input2 = [
-            {"id": 89, "size": 10, "height": 4},
-            {"id": 7, "size": 1, "height": 7}
-        ]
+                {"id": 89, "size": 10, "height": 4},
+                {"id": 7, "size": 1, "height": 7}
+                ]
         json_list_input = Rectangle.to_json_string(list_input)
         list_output = Rectangle.from_json_string(json_list_input)
         self.assertEqual(list_input, list_output)
@@ -275,6 +280,7 @@ class TestBaseMethod_load_from_file(unittest.TestCase):
         with self.assertRaises(TypeError):
             Base.load_from_file([], [])
 
+
 class TestBase_save_to_file_csv(unittest.TestCase):
     """Unittests for testing save_to_file_csv method of Base class."""
 
@@ -342,6 +348,7 @@ class TestBase_save_to_file_csv(unittest.TestCase):
         with self.assertRaises(TypeError):
             Square.save_to_file_csv([], [])
 
+
 class TestBase_load_from_file_csv(unittest.TestCase):
     """Unittests for testing load_from_file_csv method of Base class."""
 
@@ -408,7 +415,6 @@ class TestBase_load_from_file_csv(unittest.TestCase):
             Base.load_from_file_csv([], 1)
 
 
-
 class TestBase_load_from_file_csv(unittest.TestCase):
     """
     Test for laod from
@@ -427,7 +433,6 @@ class TestBase_load_from_file_csv(unittest.TestCase):
             os.remove("Square.csv")
         except OSError:
             pass
-
 
     def test_load_from_file_csv_no_file(self):
         output = Rectangle.load_from_file_csv()
@@ -467,7 +472,6 @@ class TestBase_load_from_file_csv(unittest.TestCase):
     def test_load_from_file_csv_more_than_one_arg(self):
         with self.assertRaises(TypeError):
             Base.load_from_file_csv([], [])
-
 
 
 if __name__ == "__main__":

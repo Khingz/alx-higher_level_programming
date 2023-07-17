@@ -76,6 +76,7 @@ class TestBase_Class_Instance(unittest.TestCase):
         self.assertEqual(7, rect1.x)
         self.assertEqual(4, rect1.y)
 
+
 class TestRectangle_width(unittest.TestCase):
     """Unittests for testing initialization of Rectangle width attribute."""
 
