@@ -15,6 +15,6 @@ class Rectangle {
       }
       process.stdout.write('\n');
     }
-  };
+  }
 }
 module.exports = Rectangle;
