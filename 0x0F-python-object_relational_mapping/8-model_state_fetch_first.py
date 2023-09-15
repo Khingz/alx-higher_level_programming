@@ -20,4 +20,4 @@ if __name__ == "__main__" and len(argv) == 4:
     if data:
         print("{}: {}".format(data.id, data.name))
     else:
-        print("")
+        print("Nothing")
