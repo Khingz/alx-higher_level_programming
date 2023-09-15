@@ -12,7 +12,7 @@ if __name__ == "__main__" and len(sys.argv) == 4:
             db=sys.argv[3])
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM states WHERE name LIKE\
-            'N%' ORDER BY states.id")
+            'N%' ORDER BY id")
     rows = cursor.fetchall()
     for i in rows:
         print(i)
