@@ -12,10 +12,7 @@ if __name__ == "__main__" and len(sys.argv) == 5:
             db=sys.argv[3])
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM states WHERE \
-            name = '{}'".format(sys.argv[4]))
+            BINARY name = '{}'".format(sys.argv[4]))
     rows = cursor.fetchall()
     for i in rows:
         print(i)
-
-    cursor.close()
-    connection.close()
