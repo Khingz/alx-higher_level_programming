@@ -21,4 +21,4 @@ if __name__ == "__main__" and len(argv) == 4:
     for state in states:
         print("{}: {}".format(state.id, state.name))
         for city in state.cities:
-            print("   {}: {}".format(city.id, city.name))
+            print("\t{}: {}".format(city.id, city.name))
