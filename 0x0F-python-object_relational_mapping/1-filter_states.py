@@ -11,8 +11,8 @@ if __name__ == "__main__" and len(sys.argv) == 4:
             passwd=sys.argv[2],
             db=sys.argv[3])
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM states WHERE name LIKE\
-            'N%' ORDER BY id")
+    cursor.execute("SELECT * FROM states ORDER BY id")
     rows = cursor.fetchall()
     for i in rows:
-        print(i)
+        if i[1].startswith('N'):
+            print(i)
