@@ -16,6 +16,8 @@ if __name__ == "__main__" and len(argv) == 5:
 
     Session = sessionmaker(bind=engine)
     session = Session()
-    data = session.query(State).filter(State.name == argv[4]).all()
-    for state in data:
-        print("{}".format(state.id))
+    data = session.query(State).filter(State.name == argv[4]).first()
+    if data:
+        print("{}".format(data.id))
+    else:
+        print("Not found")
