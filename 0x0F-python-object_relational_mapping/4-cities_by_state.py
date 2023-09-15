@@ -11,7 +11,8 @@ if __name__ == "__main__" and len(sys.argv) == 4:
             passwd=sys.argv[2],
             db=sys.argv[3])
     cursor = connection.cursor()
-    query = "SELECT id, name FROM cities"
+    query = "SELECT cities.id, cities.name, states.name \
+            FROM cities JOIN states ON states.id = cities.state_id"
     cursor.execute(query)
     rows = cursor.fetchall()
     for i in rows:
