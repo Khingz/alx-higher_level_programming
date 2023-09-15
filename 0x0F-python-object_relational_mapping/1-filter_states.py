@@ -16,6 +16,3 @@ if __name__ == "__main__" and len(sys.argv) == 4:
     rows = cursor.fetchall()
     for i in rows:
         print(i)
-
-    cursor.close()
-    connection.close()
