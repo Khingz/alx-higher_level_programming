@@ -11,8 +11,8 @@ if __name__ == "__main__" and len(sys.argv) == 5:
             passwd=sys.argv[2],
             db=sys.argv[3])
     cursor = connection.cursor()
-    query = "SELECT * FROM states WHERE name = %s"
-    cursor.execute(query, (sys.argv[4],))
+    cursor.execute("SELECT * FROM states WHERE \
+            name = '{}'".format(sys.argv[4]))
     rows = cursor.fetchall()
     for i in rows:
         print(i)
