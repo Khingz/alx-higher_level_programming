@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # Send delete request
 curl -sX DELETE "$1"
-
