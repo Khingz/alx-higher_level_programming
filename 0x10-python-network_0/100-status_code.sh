@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Return request status code
-curl -sI "$1" | grep "HTTP" | awk -F " " '{print $2}'
+curl -s -o /dev/null "$1" -w "%{http_code}"
