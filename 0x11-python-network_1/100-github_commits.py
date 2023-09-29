@@ -18,6 +18,6 @@ if __name__ == "__main__":
             for i in range(10):
                 print("{}: {}".format(
                     res[i].get('sha'),
-                    res[i]i.get('commit').get('author').get('name')))
+                    res[i].get('commit').get('author').get('name')))
         except ValueError:
             pass
