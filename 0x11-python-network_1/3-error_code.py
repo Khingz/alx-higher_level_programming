@@ -3,7 +3,6 @@
 
 if __name__ == "__main__":
     import urllib.request
-    import urllib.parse
     import sys
     from urllib.error import HTTPError
 
@@ -13,4 +12,4 @@ if __name__ == "__main__":
             html = response.read().decode('utf8')
             print(html)
         except HTTPError as e:
-            print('Error code: ', e.code)
+            print('Error code: {}'.format(e.code))
