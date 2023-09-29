@@ -8,14 +8,14 @@ if __name__ == "__main__":
     user = sys.argv[2]
     repo = sys.argv[1]
 
-    payload = {'committer': 'rails'}
-
-    url = f'https://api.github.com/repos/{user}/{repo}/commits'
+    url = 'https://api.github.com/repos/{}/{}/commits'.format(
+            user,
+            repo)
     res = requests.get(url)
     if res.status_code == 200:
         try:
             res = res.json()
-            for i in range(10):
+            for i in range(min(10, len(res))):
                 print("{}: {}".format(
                     res[i].get('sha'),
                     res[i].get('commit').get('author').get('name')))
